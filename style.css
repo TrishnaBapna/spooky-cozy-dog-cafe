@@ -1,0 +1,568 @@
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: "IM Fell English", serif;
+}
+
+body {
+  margin: 0;
+  padding: 16px;
+  color: #593b2b;
+  background: #f8e8d2;
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.game {
+  width: min(1200px, 100%);
+  margin: auto;
+}
+
+
+/* TOP BAR */
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.top-bar h1 {
+  margin: 0;
+  color: #a34e2d;
+}
+
+.stats {
+  display: flex;
+  gap: 20px;
+  font-weight: bold;
+}
+
+
+/* START & END SCREENS */
+
+.screen {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 30px;
+  text-align: center;
+}
+
+.cafe-shop {
+  display: block;
+  width: 650px;
+  height: 650px;
+  object-fit: contain;
+  margin: 0 auto;
+  transform: translateX(-50px);
+}
+#start-button,
+#restart-button {
+  padding: 18px 40px;
+  color: white;
+  background: #a34e2d;
+  border: none;
+  border-radius: 16px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+#start-button,
+#restart-button {
+  animation: wiggle 1.8s ease-in-out infinite;
+}
+
+#start-button,
+#restart-button:hover {
+  background: #803b24;
+}
+
+#start-button:hover,
+#restart-button:hover {
+  animation: none;
+  transform: scale(1.08);
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  10% {
+    transform: rotate(-3deg) scale(1.03);
+  }
+
+  20% {
+    transform: rotate(3deg) scale(1.03);
+  }
+
+  30% {
+    transform: rotate(-2deg) scale(1.02);
+  }
+
+  40% {
+    transform: rotate(2deg) scale(1.02);
+  }
+
+  50% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+#end-screen h3 {
+  font-size: 28px;
+  color: #593b2b;
+  margin: 20px 0;
+}
+
+#final-coins {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+/* CAFÉ SCENE */
+
+.cafe-scene {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 4030 / 2880;
+
+  overflow: hidden;
+
+  background-color: #c68b59;
+  background-image: url("assets/cafe-background.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+
+/* CUSTOMER */
+
+.customer-area {
+  position: absolute;
+  z-index: 2;
+  left: 20px;
+  right: 20px;
+  top: 20%;
+  bottom: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 0px;
+  margin: 0;
+}
+
+.customer {
+  display: flex;
+  justify-content: bottom;
+  align-items: center;
+}
+
+.customer img {
+  display: block;
+
+  width: 350px;
+  height: 350px;
+
+  object-fit: contain;
+}
+
+.order-ticket {
+  position: relative;
+  width: 350px;
+  align-self: flex-start;
+
+  display: grid;
+}
+
+.order-bubble {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.order-content {
+  grid-area: 1 / 1;
+
+  z-index: 1;
+
+  padding: 105px 35px 55px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+.order-ticket h2 {
+  margin: 0;
+  color: #593b2b;
+  font-size: 18px;
+  text-align: center;
+}
+
+#order-text {
+  width: 120%;
+  color: #593b2b;
+  font-size: 17px;
+  line-height: 1.7;
+  text-align: center;
+  padding-left:30px;
+}
+
+
+/* WORKBENCH */
+
+.workbench {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  background-image: url("assets/bench.gif");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+
+/* WORKBENCH */
+
+.workbench-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
+
+  display: grid;
+  grid-template-columns: 0.8fr 1.5fr 1.4fr 1.1fr;
+  grid-template-rows: 1fr 1fr;
+
+  grid-template-areas:
+    "ice base syrup cup"
+    "ice toppings toppings cup";
+
+  align-items: center;
+  justify-items: center;
+
+  column-gap: 0;
+  row-gap: 0;
+  padding: 0 2%;
+  pointer-events: none;
+}
+
+
+/* STATIONS */
+
+.station,
+.cup-station {
+  position: relative;
+  z-index: 5;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  text-align: center;
+  pointer-events: auto;
+}
+
+
+/* ICE  */
+
+.ice-station {
+  grid-area: ice;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+
+/* BASE STATION */
+
+.base-station {
+  grid-area: base;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+}
+
+
+/* SYRUP */
+
+.syrup-station {
+  grid-area: syrup;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0;
+  margin: 0;
+}
+
+
+/* TOPPING */
+
+.topping-station {
+  grid-area: toppings;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0;
+  margin: 0;
+}
+
+
+/* CUP STATION */
+
+.cup-station {
+  grid-area: cup;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+
+/* ART BUTTONS */
+
+.art-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+
+  color: #593b2b;
+
+  background: transparent;
+  border: none;
+  border-radius: 0;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  line-height: 0;
+  transition:
+    transform 0.18s ease,
+    filter 0.18s ease;
+}
+
+.art-button:hover {
+  background: transparent;
+  transform: translateY(-4px) scale(1.04);
+  filter:
+    drop-shadow(0 5px 4px rgb(89 59 43 / 25%));
+}
+
+.art-button:active {
+  transform: scale(0.96);
+}
+
+.art-button:focus-visible {
+  outline: 2px dashed #a34e2d;
+  outline-offset: 4px;
+}
+
+
+.art-button.selected {
+  background: transparent;
+  border: none;
+  filter:
+    drop-shadow(0 0 5px #ffd166)
+    drop-shadow(0 0 10px #e7a13a);
+  transform: scale(1.05);
+}
+
+.art-button img {
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.base-station .art-button img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+}
+
+.ice-station .art-button img {
+  width: 210px;
+  height: 190px;
+  object-fit: contain;
+}
+
+.syrup-station .art-button img {
+  height: 115px;
+  object-fit: contain;
+}
+
+
+.topping-station .art-button img {
+  width: 125px;
+  height: 125px;
+  object-fit: contain;
+}
+
+.cup {
+  position: relative;
+  width: 270px;
+  height: 210px;
+  margin: 3px auto;
+}
+
+.cup-outline,
+.cup-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding-right: 50px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+#cup-base {
+  z-index: 3;
+}
+
+#cup-ice {
+  z-index: 2;
+}
+
+#cup-syrup {
+  z-index: 4;
+}
+
+.cup-outline {
+  z-index: 5;
+}
+
+/* Cup toppings */
+.cup-toppings {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.cup-toppings img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.cup-station h3 {
+  margin: 0;
+  color: #593b2b;
+  font-size: 13px;
+  text-shadow: 0 1px 3px #fff8ed;
+}
+
+
+/* Cup actions */
+.cup-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.trash-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 36px;
+  padding: 6px;
+  background: #fff8ed;
+  border: 2px solid #c68b59;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.trash-button img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.trash-button:hover {
+  background: #f5dfc5;
+  transform: translateY(-2px);
+}
+
+.trash-button:active {
+  transform: scale(0.95);
+}
+
+#serve-button {
+  margin-top: 4px;
+  padding: 9px 16px;
+  color: white;
+  background: #a34e2d;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+
+#serve-button:hover {
+  background: #803b24;
+  transform: translateY(-2px);
+}
+
+
+/* FEEDBACK */
+#feedback {
+  min-height: 32px;
+  margin: 16px 0;
+  color: #a34e2d;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+/*  HIDDEN */
+[hidden] {
+  display: none !important;
+}

@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Spooky Dog Cafe</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game">
+        <audio id="background-music" loop>
+        <source
+          src="assets/zephiramusic-halloween-lofi-599381.mp3"
+          type="audio/mpeg"
+        />
+      </audio>
+      <!-- Top Bar -->
+      <header class="top-bar">
+        <h1>Spooky Cat Café</h1>
+        <div class="stats">
+          <span>
+            TIME:
+            <b id="timer">60</b>
+          </span>
+
+          <span>
+            COINS:
+            <b id="coins">0</b>
+          </span>
+        </div>
+      </header>
+
+      <!-- Start Screen -->
+      <section id="start-screen" class="screen">
+        <img
+          class="cafe-shop"
+          src="assets/cafe-shop.png"
+          alt="Cafe Shop Image"
+        />
+        <h2>Welcome to Spooky Cat Cafe!</h2>
+        <button id="start-button">Start Shift</button>
+      </section>
+
+      <!-- Game Screen -->
+      <section id="game-screen" hidden>
+        <div class="cafe-scene">
+          <!-- Customer -->
+          <section class="customer-area">
+            <div class="customer">
+              <img
+                id="customer-image"
+                src="assets/vampire-customer.gif"
+                alt="Customer"
+              />
+            </div>
+
+            <div class="order-ticket">
+              <img class="order-bubble" src="assets/bubble.png" alt="" />
+              <div class="order-content">
+                <div id="order-text"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="workbench">
+  <div class="workbench-content">
+
+    <!-- ICE: spans both rows -->
+    <div class="station ice-station">
+      <button
+        class="art-button"
+        data-type="ice"
+        data-value="yes"
+        aria-label="Add or remove ice"
+      >
+        <img src="assets/ice-scoop.png" alt="Ice scoop" />
+      </button>
+    </div>
+
+    <!-- BASE: top row -->
+    <div class="station base-station">
+      <button
+        class="art-button"
+        data-type="base"
+        data-value="coffee"
+        aria-label="Add coffee"
+      >
+        <img src="assets/coffee-station.gif" alt="Coffee station" />
+      </button>
+
+      <button
+        class="art-button"
+        data-type="base"
+        data-value="cider"
+        aria-label="Add apple cider"
+      >
+        <img
+          src="assets/apple-cider-station.gif"
+          alt="Apple cider station"
+        />
+      </button>
+
+      <button
+        class="art-button"
+        data-type="base"
+        data-value="chocolate"
+        aria-label="Add hot chocolate"
+      >
+        <img
+          src="assets/hot-chocolate-station.gif"
+          alt="Hot chocolate station"
+        />
+      </button>
+    </div>
+
+    <!-- SYRUP: top row -->
+    <div class="station syrup-station">
+      <button
+        class="art-button"
+        data-type="syrup"
+        data-value="pumpkin"
+        aria-label="Pumpkin syrup"
+      >
+        <img
+          src="assets/pumpkin-syrup-bottle.gif"
+          alt="Pumpkin syrup bottle"
+        />
+      </button>
+
+      <button
+        class="art-button"
+        data-type="syrup"
+        data-value="caramel"
+        aria-label="Caramel syrup"
+      >
+        <img
+          src="assets/caramel-syrup-bottle.gif"
+          alt="Caramel syrup bottle"
+        />
+      </button>
+
+      <button
+        class="art-button"
+        data-type="syrup"
+        data-value="cider"
+        aria-label="Cider syrup"
+      >
+        <img
+          src="assets/cider-syrup-bottle.gif"
+          alt="Cider syrup bottle"
+        />
+      </button>
+
+      <button
+        class="art-button"
+        data-type="syrup"
+        data-value="chocolate"
+        aria-label="Chocolate syrup"
+      >
+        <img
+          src="assets/chocolate-syrup-bottle.gif"
+          alt="Chocolate syrup bottle"
+        />
+      </button>
+    </div>
+
+    <!-- TOPPINGS: bottom row -->
+    <div class="station topping-station">
+      <button
+        class="art-button"
+        data-type="topping"
+        data-value="whipped"
+        aria-label="Add whipped cream"
+      >
+        <img
+          src="assets/whipped-cream-container.png"
+          alt="Whipped cream container"
+        />
+      </button>
+
+      <button
+        class="art-button"
+        data-type="topping"
+        data-value="cinnamon"
+        aria-label="Add cinnamon"
+      >
+        <img
+          src="assets/cinnamon-container.png"
+          alt="Cinnamon container"
+        />
+      </button>
+
+      <button
+        class="art-button"
+        data-type="topping"
+        data-value="marshmallows"
+        aria-label="Add marshmallows"
+      >
+        <img
+          src="assets/marshmallow-bowl.png"
+          alt="Marshmallow bowl"
+        />
+      </button>
+
+      <button
+        class="art-button"
+        data-type="topping"
+        data-value="sprinkles"
+        aria-label="Add sprinkles"
+      >
+        <img
+          src="assets/sprinkles-container.png"
+          alt="Sprinkles container"
+        />
+      </button>
+    </div>
+
+    <!-- GLASS: right side, spans both rows -->
+    <div class="cup-station">
+      <div class="cup">
+        <img
+          class="cup-outline"
+          src="assets/clear-cup.png"
+          alt="Clear cup"
+        />
+
+        <img
+          id="cup-ice"
+          class="cup-layer"
+          src="assets/ice.png"
+          alt="Ice"
+          hidden
+        />
+
+        <img
+          id="cup-base"
+          class="cup-layer"
+          alt=""
+          hidden
+        />
+
+        <img
+          id="cup-syrup"
+          class="cup-layer"
+          alt=""
+          hidden
+        />
+
+        <div id="cup-toppings" class="cup-toppings"></div>
+      </div>
+
+      <div class="cup-actions">
+        <button
+          id="clear-button"
+          class="trash-button"
+          aria-label="Clear cup"
+          title="Clear cup"
+        >
+          <img src="assets/bin.png" alt="" />
+        </button>
+
+        <button id="serve-button">SERVE DRINK</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+        </div>
+        <p id="feedback" aria-live="message"></p>
+      </section>
+      <section id="end-screen" class="screen" hidden>
+        <h2>Cafe Closed!</h2>
+        <h3>You earned <span id="final-coins">0</span> coins!</h3>
+        <button id="restart-button">Play Again</button>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
